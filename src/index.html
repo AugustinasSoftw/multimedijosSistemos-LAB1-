@@ -3,7 +3,8 @@
 <head>
 <meta charset=utf-8/>
 <title>Lab 1. Introduction to HTML5 and HLS</title>
-  
+<link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css">
   <!--
   Embed needed js libraries for video player. Note, libraries needs to be hosted on your server, under /js folder.
    -->
@@ -15,22 +16,71 @@
 
 </head>
 <body>
-  <h1>My first HLS player</h1>
-  
-  <!--
-  location for your player window
-  -->
-  
-	<button type="button">Play</button>
-	<button type="button">Pause</button>
-	<button type="button">Stop</button>
-	<button type="button">Jump to 5 sec forward</button>
-	<button type="button">Jump to 5 sec backwards</button>	
-	
-	<p>Playlist</p>
-	
-	<input type="text" name="url1" size="100" value="https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8"><button type="button">Load</button><br>
-	<input type="text" name="url2" size="100" value="https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8"><button type="button">Load</button><br>
-	<button type="button">Shuffle</button>
+    <div class="app-container">
+        <h1>HLS Player</h1>
+
+        <div class="video-container">
+            <video
+                id="my-video"
+                class="video-js vjs-default-skin vjs-big-play-centered"
+                controls
+                preload="auto"
+                width="720"
+                height="405"
+                data-setup="{}"
+            >
+                <source src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" type="application/x-mpegURL" />
+            </video>
+        </div>
+
+        <div class="controls-container">
+            <button id="btn-play" class="control-btn">Play</button>
+            <button id="btn-pause" class="control-btn">Pause</button>
+            <button id="btn-stop" class="control-btn">Stop</button>
+            <button id="btn-backward" class="control-btn">⏪ -5s</button>
+            <button id="btn-forward" class="control-btn">+5s ⏩</button>
+        </div>
+
+        <div class="playlist-container">
+            <div class="playlist-header">
+                <h2>Up Next</h2>
+                <button id="btn-shuffle" class="shuffle-btn">🔀 Shuffle</button>
+            </div>
+            
+            <ul id="track-list">
+                <li class="track active" data-url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8">
+                    <div class="track-info">
+                        <span class="track-num">1</span>
+                        <span class="track-title">Big Buck Bunny (Animation)</span>
+                    </div>
+                    <span class="status">Playing</span>
+                </li>
+                <li class="track" data-url="https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8">
+                    <div class="track-info">
+                        <span class="track-num">2</span>
+                        <span class="track-title">Tears of Steel (Sci-Fi)</span>
+                    </div>
+                    <span class="status"></span>
+                </li>
+                <li class="track" data-url="https://playertest.longtailvideo.com/adaptive/wowzaid3/playlist.m3u8">
+                    <div class="track-info">
+                        <span class="track-num">3</span>
+                        <span class="track-title">Wowza Nature Stream (Nature)</span>
+                    </div>
+                    <span class="status"></span>
+                </li>
+                <li class="track" data-url="https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8">
+                    <div class="track-info">
+                        <span class="track-num">4</span>
+                        <span class="track-title">Apple Advanced Test (Diagnostic)</span>
+                    </div>
+                    <span class="status"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
+    <script src="js/control.js"></script>
 </body>
 </html>
